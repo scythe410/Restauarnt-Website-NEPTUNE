@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neptune - Menu</title>
+    <link rel="stylesheet" href="menu.css">
+    <script src="menu.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<!--nav and header-->
+<header>
+    <div class="logo">
+        <img src="images/logo2.png" alt="The Neptune" style="width: 60px">
+    </div>
+    <h1 class="brand">THE NEPTUNE</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li class="dropdown">
+                <a href="menu.html" class="dropbtn">MENU</a>
+                <div class="dropdown-content">
+                    <a href="menu.html">ALL MENU</a>
+                    <a href="menu.html?category=SUSHI">SUSHI</a>
+                    <a href="menu.html?category=FRESH%20WATER">FRESH WATER</a>
+                    <a href="menu.html?category=SALT%20WATER">SALT WATER</a>
+                    <a href="menu.html?category=SIDES">SIDES</a>
+                </div>
+            </li>
+            <li><a href="index.html#specialities">SPECIALITIES</a></li>
+            <li><a href="index.html#contact">CONTACT</a></li>
+            <li><a href="index.html#about-us">ABOUT</a></li>
+            <li>
+                <!--
+                <div class="order" onclick="location.href='checkout.html';">
+                    <button>CHECKOUT</button></li>
+                </div>  
+                --> 
+            <div class="cart-icon">
+                <i class='bx bx-shopping-bag'></i>
+                <span class="cart-count">0</span>
+            </div>
+        </ul>
+    </nav>
+</header>
+
+<!--main content-->
+<main>
+    <div class="carousel">
+        <div class="carousel-content">
+            <h2>MAIN MENU</h2>
+        </div>
+    </div>
+</main>
+
+<!--full menu-->
+<section class="menu-section">
+        <div class="menu-types">
+            <div class="menu-tabs">
+                <div class="menu-tab">SUSHI</div>
+                <div class="menu-tab active">FRESH WATER</div>
+                <div class="menu-tab">SALT WATER</div>
+                <div class="menu-tab">SIDES</div>
+            </div>
+            <h2>FRESH WATER</h2>
+            <p>Our fresh water menu is a collection of the finest fish and seafood from the rivers and lakes of Sri Lanka. <br>
+                These dishes are prepared with the freshest ingredients and are sure to tantalize your taste buds.
+            </p>
+        </div>
+</section>
+
+
+<div class="menu-grid">
+    <!--UPDATING WITH JAVASCRIPT USING DATA FROM XML-->
+    <div class="menu-item">
+        <div class="menu-item-image">
+            DISH IMAGE
+        </div>
+        <div class="menu-item-content">
+            <div class="menu-item-left">
+                <h3>DISH NAME</h3>
+                <p>DISH DESCRIPTION</p>
+            </div>
+            <div class="menu-item-price">DISH PRICE</div>
+            <div class="add-to-cart">
+                <button class="add-button">+</button>
+                <div class="quantity-controls">
+                    <div class="remove-button">
+                        <i class='bx bxs-trash-alt bx-flip-horizontal' ></i>
+                    </div>
+                  <div class="quantity">1</div>
+                  <div class="plus-button">+</div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<!--sidebar-->
+<div class="cart-sidebar">
+    <div class="cart-header">
+        <h2>Your Items</h2>
+        <button class="close-cart">&times;</button>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-footer">
+        <div class="subtotal">
+            <span>Subtotal:</span>
+            <span class="subtotal-amount">LKR 0</span>
+        </div>
+        <div class="cart-buttons" onclick="location.href='checkout.html';">
+            <button class="checkout-button">CHECKOUT</button>
+        </div>
+    </div>
+</div>
+<div class="overlay"></div>
+
+
+<!-- Footer Section -->
+<footer class="footer-container">
+    <div class="footer-top">
+        <!--
+        <img src="footer-1.jpg" alt="Left Footer Image" class="side-image">
+        -->
+        
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo3.png" alt="The Neptune Logo">
+                <h2>THE NEPTUNE</h2>
+            </div>
+            
+            <nav class="footer-nav">
+                <a href="index.html">HOME</a>
+                <a href="menu.html">MENU</a>
+                <a href="index.html#specialities">SPECIALITIES</a>
+                <a href="index.html#contact">CONTACT</a>
+                <a href="index.html#about-us">ABOUT</a>
+            </nav>
+            
+            <div class="footer-info">
+                <p>9:00AM - 10:00PM</p>
+                <p>48/2 5th Lane, Colombo 3, Sri Lanka</p>
+                <p>
+                    <a href="mailto:support@neptune.com">support@neptune.com</a>
+                </p>
+            </div>
+        </div>
+        <!--
+        <img src="footer-2.jpg" alt="Right Footer Image" class="side-image">
+        -->
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="footer-copyright">
+            © 2025 THE NEPTUNE  |  Designed by Ramiru.
+        </div>
+        <div class="footer-social">
+            <a href="#" aria-label="Visit our Facebook page"><i class='bx bxl-facebook'></i></a>
+            <a href="#" aria-label="Visit our Twitter page"><i class='bx bxl-twitter'></i></a>
+            <a href="#" aria-label="Visit our Instagram page"><i class='bx bxl-instagram'></i></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

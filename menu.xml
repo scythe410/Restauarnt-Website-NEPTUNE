@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+  <category name="SUSHI">
+    <description>Our sushi selection features the freshest ingredients prepared with traditional Japanese techniques and a Sri Lankan twist.</description>
+    <item>
+      <title>EL BANO COMONO</title>
+      <description>Tuna mixed with spicy mayo and cucumber wrapped in seaweed and rice.</description>
+      <price>LKR 2600</price>
+      <image>images/sushi2.jpg</image>
+    </item>
+    <item>
+      <title>KIMGU ROLL</title>
+      <description>Fresh salmon placed on top of seasoned rice with a touch of wasabi.</description>
+      <price>LKR 2200</price>
+      <image>images/sushi1.jpg</image>
+    </item>
+    <item>
+      <title>OAR FISH SALAMI</title>
+      <description>Tuna mixed with spicy mayo and cucumber wrapped in seaweed and rice.</description>
+      <price>LKR 2600</price>
+      <image>images/sushi2.jpg</image>
+    </item>
+    <item>
+      <title>SAMMON DELI</title>
+      <description>Tuna mixed with spicy mayo and cucumber wrapped in seaweed and rice.</description>
+      <price>LKR 2600</price>
+      <image>images/sushi2.jpg</image>
+    </item>
+    <item>
+    <title>BENTO OLED</title>
+    <description>Fresh salmon placed on top of seasoned rice with a touch of wasabi.</description>
+    <price>LKR 2200</price>
+    <image>images/sushi1.jpg</image>
+    </item>
+  </category>
+  
+  <category name="FRESH WATER">
+    <description>Our fresh water menu is a collection of the finest fish and seafood from the rivers and lakes of Sri Lanka.</description>
+    <item>
+      <title>SALMON BAKERU</title>
+      <description>This is a good dish. It is made out of some ingredients that are surely found from mother nature and is very fresh and tasty.</description>
+      <price>LKR 3400</price>
+      <image>images/sal.jpg</image>
+    </item>
+    <item>
+      <title>RAINBOW TROUT</title>
+      <description>Tuna mixed with spicy mayo and cucumber wrapped in seaweed and rice.</description>
+      <price>LKR 2600</price>
+      <image>images/sushi2.jpg</image>
+    </item>
+    <item>
+      <title>CATFISH STEW</title>
+      <description>Grilled river trout seasoned with herbs and served with fresh lemon.</description>
+      <price>LKR 2900</price>
+      <image>images/sl.jpg</image>
+    </item>
+    <item>
+      <title>LUNA CRUST</title>
+      <description>Luna fish seasoned with herbs and served with fresh lemon.</description>
+      <price>LKR 2300</price>
+      <image>images/7.jpg</image>
+    </item>
+    <item>
+      <title>TILAPIA FILET</title>
+      <description>Watermelon is a good fruit. It is very tasty and is very good for health.</description>
+      <price>LKR 1200</price>
+      <image>images/8.jpg</image>
+    </item>
+  </category>
+  
+  <category name="SALT WATER">
+    <description>Discover the taste of the ocean with our salt water selection featuring the best catches from Sri Lankan coastal waters.</description>
+    <item>
+      <title>GRILLED TUNA</title>
+      <description>Fresh tuna steak grilled to perfection with sesame crust and soy glaze.</description>
+      <price>LKR 3200</price>
+      <image>images/sl.jpg</image>
+    </item>
+    <item>
+      <title>PRAWNS CURRY</title>
+      <description>Tiger prawns cooked in a traditional Sri Lankan curry sauce with coconut milk.</description>
+      <price>LKR 3600</price>
+      <image>images/sl.jpg</image>
+    </item>
+    <item>
+      <title>TUNA STEAK</title>
+      <description>Grilled tuna steak marinated in a blend of spices and served with a side of wasabi.</description>
+      <price>LKR 3200</price>
+      <image>images/sl.jpg</image>
+    </item>
+    <item>
+      <title>LOBSTER THERMIDOR</title>
+      <description>Grilled lobster tail with a creamy white wine sauce and a hint of mustard.</description>
+      <price>LKR 4200</price>
+      <image>images/sl.jpg</image>
+    </item>
+    <item>
+      <title>SEA BASS</title>
+      <description>Grilled sea bass fillet marinated in a blend of spices and served with a side of wasabi.</description>
+      <price>LKR 3200</price>
+      <image>images/sl.jpg</image>
+  </item>
+  <item>
+      <title>CRAB CURRY</title>
+      <description>Crab cooked in a traditional Sri Lankan curry sauce with coconut milk.</description>
+      <price>LKR 3600</price>
+      <image>images/sl.jpg</image>
+    </item>
+  </category>
+  
+  <category name="SIDES">
+    <description>Complete your meal with our selection of traditional side dishes that complement our main courses perfectly.</description>
+    <item>
+      <title>MISO SOUP</title>
+      <description>Traditional Japanese soup with tofu, seaweed and spring onions.</description>
+      <price>LKR 800</price>
+      <image>images/side1.jpg</image>
+    </item>
+    <item>
+      <title>SEAWEED SALAD</title>
+      <description>Mixed seaweed with sesame dressing and a hint of chili.</description>
+      <price>LKR 1200</price>
+      <image>images/side2.jpg</image>
+    </item>
+    <item>
+      <title>STEAMED RICE</title>
+      <description>Steamed white rice served with a side of wasabi and pickled ginger.</description>
+      <price>LKR 600</price>
+      <image>images/side3.jpg</image>
+    </item>
+    <item>
+      <title>EDAMAME</title>
+      <description>Steamed soybeans with a sprinkle of sea salt.</description>
+      <price>LKR 800</price>
+      <image>images/side4.jpg</image>
+    </item>
+  </category>
+</menu>
+

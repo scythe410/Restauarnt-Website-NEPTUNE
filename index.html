@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Neptune</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<!--nav and header-->
+<header>
+    <div class="logo">
+        <img src="images/logo2.png" alt="The Neptune" style="width: 60px">
+    </div>
+    <h1 class="brand">THE NEPTUNE</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li class="dropdown">
+                <a href="menu.html" class="dropbtn">MENU</a>
+                <div class="dropdown-content">
+                    <a href="menu.html">ALL MENU</a>
+                    <a href="menu.html?category=SUSHI">SUSHI</a>
+                    <a href="menu.html?category=FRESH%20WATER">FRESH WATER</a>
+                    <a href="menu.html?category=SALT%20WATER">SALT WATER</a>
+                    <a href="menu.html?category=SIDES">SIDES</a>
+                </div>
+            </li>
+            <li><a href="#specialities">SPECIALITIES</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+            <li><a href="#about-us">ABOUT</a></li>
+
+            <!--
+            <li>
+                <div class="reserve">
+                    <button onclick = "location.href='menu.html';"> MENU </button>
+                </div>  
+            </li> 
+            -->
+
+            <div class="cart-icon">
+                <i class='bx bx-shopping-bag'></i>
+                <span class="cart-count">0</span>
+            </div>
+        </ul>
+    </nav>
+</header>
+
+<!--main content-->
+<main>
+    <div class="carousel">
+        <div class="carousel-content">
+            <h1>WELCOME TO</h1>
+            <h2>THE NEPTUNE</h2>
+        </div>
+        <!--
+        <button class="prev">&lt;</button>
+        <button class="next">&gt;</button>
+        -->
+    </div>
+</main>
+
+<!--about us section-->
+<section class="about-us">
+    <div class="container">
+        <!-- Left side: Overlapping rectangles -->
+        <div class="ractangles" id="about-us">
+            <img src="images/text-1.png" alt="Image 02" class="image-02">
+            <img src="images/about-1.jpg" alt="Image 03" class="image-03">
+        </div>
+          
+        <!-- Right side: Text content -->
+        <div class="text-container">
+          <h3>ABOUT US</h3>
+          <h1>THE SEA ITSELF</h1>
+          <p>
+            We bring you the ultimate seafood experience, where freshness meets flavor in every bite. 
+            Our chefs combine years of expertise with the finest ingredients to craft dishes that highlight the true taste of the ocean. <br>
+            
+            From perfectly grilled seafood to rich, flavorful chowders, every dish is made with passion and precision. 
+            Whether you're a seafood lover or trying it for the first time, we promise a dining experience that's fresh, flavorful, and unforgettable.
+            Dive into the taste of the sea with us!
+          </p>
+          <button class="read-more">READ MORE</button>
+        </div>
+      </div>
+</section>
+
+<!-- food -->
+<section class="food-section">
+    <div class="text-content">
+        <div class="feature">
+            <img src="images/service-1.png" alt="Chopsticks Icon" class="icon">
+            <div class="text">
+                <h3>AUTHENTIC TASTE</h3>
+                <p>Our dishes are made from fresh and high-quality ingredients. We assure the best quality with full customer satisfaction. Everything tastes better and we guarrantee it. This is a sample text.</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="images/service-2.png" alt="Sushi Icon" class="icon">
+            <div class="text">
+                <h3>PREMIUM INGREDIENTS</h3>
+                <p>Our dishes are made from fresh and high-quality ingredients. We assure the best quality with full customer satisfaction. Everything tastes better and we guarrantee it. This is a sample text.</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="images/service-3.png" alt="Menu Icon" class="icon">
+            <div class="text">
+                <h3>DIVERSE MENU</h3>
+                <p>Our dishes are made from fresh and high-quality ingredients. We assure the best quality with full customer satisfaction. Everything tastes better and we guarrantee it. This is a sample text.</p>
+            </div>
+        </div>
+    </div>
+    <div class="image-content">
+        <img src="images/about-2.jpg" alt="Fine Dining Dish" class="main-image">
+        <img src="images/about-3.jpg" alt="Sushi Plate" class="overlay-image">
+    </div>
+</section>
+
+
+
+<!-- Menu Section -->
+<section class="menu-section" id="specialities">
+    <div class="menu-left">
+        <!--
+        <div class="japanese-text">
+            <img src="japanese-text.png" alt="Japanese Characters">
+        </div>-->
+        <h3 class="menu-header">OUR FAMOUS</h3>
+        <h2 class="menu-title">CHEF RECOMMENDED</h2>
+        <p class="menu-description">Our chef's top sushi picks are a true celebration of flavor. Fresh, tender fish paired with perfectly seasoned rice, a touch of tangy vinegar, and a hint of wasabi create a mouthwatering balance that's simply irresistible. <br>
+            Taste the passion in every bite! Our chef's recommended sushi celebrates tradition and passion. <br>
+            Each delicate slice of fresh fish pairs perfectly with seasoned rice, tangy vinegar, and a hint of wasabi, creating an inviting bite that feels like home. Experience our dedication in every dish.</p>
+        <button class="view-menu-btn" onclick="location.href='menu.html'">VIEW ALL MENU</button>
+    </div>
+
+    <div class="menu-center">
+        <img src="images/our-menu-2.png" alt="Sushi Selection" class="sushi-plate">
+    </div>
+
+    <!--This menu will be loaded from the Javascript file-->
+    <div class="menu-right">
+        <div class="menu-tabs">
+            <div class="menu-tab active">SUSHI</div>
+            <div class="menu-tab">FRESH WATER</div>
+            <div class="menu-tab">SALT WATER</div>
+            <div class="menu-tab">SIDES</div>
+        </div>
+
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <h3 class="menu-item-title">DISH NAME</h3>
+                    <span class="menu-item-price">DISH PRICE</span>
+                </div>
+                <p class="menu-item-description">DISH DESCRIPTION</p>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="scroll-indicator">
+        <span>SCROLL</span>
+        <div class="scroll-dot"></div>
+    </div>-->
+</section>
+
+<!--ep-->
+<section class="xpp">
+    <div class="xp">
+        <h2>24+</h2>
+        <p>YEARS OF CULINARY EXPERIENCE</p>
+    </div>
+</section>
+
+
+<!--map-->
+<section class="map-section" id="contact">
+    <div class="map-sec">
+
+        <div class="chef">
+            <img src="images/chef.jpg" alt="Chef" id="chef">
+        </div>
+
+        <div class="map-text">
+            <h6>BOOK A TABLE</h6>
+            <h1>ENJOY THE SEA</h1>
+            <p>At Neptune, we celebrate the ocean's bounty in every dish. <br>
+                Our expert chefs transform the day's freshest catches into culinary masterpieces that will awaken your senses. Reserve your table today for an unforgettable seafood journey.</p>
+    
+            <ul>
+                <li><strong>RESTAURANT LOCATION:</strong> <p>48/2 5th Lane, Colombo 3, Sri Lanka</p></li>
+                <li><strong>OPENING TIMES:</strong><p>9:00am - 10:00pm weekdays</p></li>
+                <li><strong>CALL BOOK OR SUPPORT:</strong><p>Email: support@neptune.com</p></li>
+                <li class="contact">+94 112-555-555</li>
+            </ul>
+            
+            <a href="tel:+1234567890" class="button-link">BOOK A TABLE</a>
+            
+        </div>
+
+        <div class="map">
+            <img src="images/map.png" alt="Map" id="map" width="480px">
+        </div>
+
+        <!--
+        <div class="rightplate">
+            <img src="our-menu-2.png" alt="right" id="rightplate">
+        </div>-->
+    </div>
+</section>
+
+<!--sidebar-->
+<div class="cart-sidebar">
+    <div class="cart-header">
+        <h2>Your Items</h2>
+        <button class="close-cart">&times;</button>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-footer">
+        <div class="subtotal">
+            <span>Subtotal:</span>
+            <span class="subtotal-amount">LKR 0</span>
+        </div>
+        <div class="cart-buttons" onclick="location.href='checkout.html';">
+            <button class="checkout-button">CHECKOUT</button>
+        </div>
+    </div>
+</div>
+<div class="overlay"></div>
+
+<!-- Footer Section -->
+<footer class="footer-container">
+    <div class="footer-top">
+        <!--
+        <img src="footer-1.jpg" alt="Left Footer Image" class="side-image">
+        -->
+        
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo3.png" alt="The Neptune Logo" style="opacity: 0.9;">
+                <h2>THE NEPTUNE</h2>
+            </div>
+            
+            <nav class="footer-nav">
+                <a href="#" onclick="window.scrollTo(0, 0);">HOME</a>
+                <a href="menu.html">MENU</a>
+                <a href="#specialities">SPECIALITIES</a>
+                <a href="#contact">CONTACT</a>
+                <a href="#about-us">ABOUT</a>
+            </nav>
+            
+            <div class="footer-info">
+                <p>9:00AM - 10:00PM</p>
+                <p>48/2 5th Lane, Colombo 3, Sri Lanka</p>
+                <p>
+                    <a href="mailto:support@neptune.com">support@neptune.com</a>
+                </p>
+            </div>
+        </div>
+        <!--
+        <img src="footer-2.jpg" alt="Right Footer Image" class="side-image">
+        -->
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="footer-copyright">
+            © 2025 THE NEPTUNE  |  Designed by Ramiru.
+        </div>
+        <div class="footer-social">
+            <a href="#" aria-label="Visit our Facebook page"><i class='bx bxl-facebook'></i></a>
+            <a href="#" aria-label="Visit our Twitter page"><i class='bx bxl-twitter'></i></a>
+            <a href="#" aria-label="Visit our Instagram page"><i class='bx bxl-instagram'></i></a>
+        </div>
+    </div>
+</footer>
+
+<button id="back-to-top" title="Back to Top">
+    <i class='bx bx-up-arrow-alt'></i>
+</button>
+
+</body>
+</html>
