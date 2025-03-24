@@ -163,12 +163,13 @@ body {
 }
 
 .form-field input:focus {
-  outline: none;
+  outline: 1px solid #111111;
   border-color: #000000;
 }
 
 .form-field input.invalid:focus {
-  border-color: #ff3333;
+  outline: 1px solid #ff0000;
+  border-color: #ff1717;
 }
 
 .form-row {
@@ -186,7 +187,13 @@ body {
   font-size: 16px;
   font-weight: 510;
   color: #171717;
+
+  margin: auto 0;
+  display: flex;
+  align-items: center;
 }
+
+
 
 .payment-option {
   display: flex;

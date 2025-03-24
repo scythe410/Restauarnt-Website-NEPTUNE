@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update cart count indicator immediately on page load
         updateCartCount();
+        
+        // Add this line to update the cart sidebar
+        updateCart();
     }
     
     // Function to update cart count indicator separately
