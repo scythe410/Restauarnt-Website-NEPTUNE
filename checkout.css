@@ -122,6 +122,7 @@ body {
 .form-field {
   margin-bottom: 20px;
   box-sizing: border-box; /* Ensures padding is included in width */
+  position: relative;
 }
 
 .form-field label {
@@ -145,6 +146,29 @@ body {
   border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+.form-field input.invalid {
+  border-color: #ff3333;
+  background-color: #fff8f8;
+}
+
+.error-message {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+  color: #ff3333;
+  font-size: 12px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+.form-field input.invalid:focus {
+  border-color: #ff3333;
 }
 
 .form-row {
