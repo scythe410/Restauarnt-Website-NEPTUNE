@@ -71,6 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function validateInput(input) {
+    
+    // Skipping validation for apartment field since it's optional
+    if (input.id === 'apartment') {
+        return true;
+    }
+
     const value = input.value.trim();
     const errorMessage = input.nextElementSibling;
     let isValid = true;

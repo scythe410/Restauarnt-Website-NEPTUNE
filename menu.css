@@ -105,12 +105,15 @@ nav a {
     color: #292929;
     font-size: 25px;
     letter-spacing: 2px;
+    
+    cursor: pointer;
   }
 
 /* Adjust logo positioning if needed */
 .logo {
     margin-left: -30px; /* Increase this value to move more to the left */
     display: flex;
+    cursor: pointer;
 }
 
 /* Dropdown Menu */
@@ -311,11 +314,13 @@ button.prev:hover, button.next:hover {
 .footer-logo {
     text-align: center;
     margin: 40px 0;
+
 }
 
 .footer-logo img {
     max-width: 120px;
     height: auto;
+    cursor: pointer;
 }
 
 .footer-logo h2 {
@@ -323,6 +328,7 @@ button.prev:hover, button.next:hover {
     font-family: 'Italiana', serif;
     font-size: 24px;
     letter-spacing: 2px;
+    cursor: pointer;
 }
 
 .footer-nav {

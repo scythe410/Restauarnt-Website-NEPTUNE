@@ -506,3 +506,22 @@ a {
   font-size: 20px;
   color: white;
 }
+
+
+#order-note {
+    font-family: "Arial";
+    font-size: 16px;
+    color: #000000;
+    line-height: 1.5;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical; /* vertical resizing only*/
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#order-note:focus {
+    outline: 1px solid #111111;
+    border-color: #000000;
+}
