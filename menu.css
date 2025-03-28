@@ -489,6 +489,7 @@ button.prev:hover, button.next:hover {
 .menu-item-left h3 {
     font-family: 'Bebas Neue';
     font-size: 35px;
+    color: #fafafa;
     letter-spacing: 2px;
     margin-top: auto;
     margin-bottom: 5px;
