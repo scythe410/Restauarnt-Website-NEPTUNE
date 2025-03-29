@@ -142,8 +142,9 @@ nav a {
 }
 
 .dropdown-content a:hover {
-    background-color: #dddddd;
+    background-color: #f3f3f3;
     border-radius: 5px;
+    color: #ff3300;
 }
 
 /* This will display the dropdown content when hovering over the dropdown container */
@@ -206,54 +207,44 @@ nav a {
     color: black;
 }
 
-/*
-.reserve button {
-    width: max-content;
-    height: 50px;
-    background-color:#ffffff;
-    color: #000000;
-    font-family: 'Quicksand', sans-serif;
-    letter-spacing: 1px;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 0 33px 0 35px;
-    border: 1px solid #2e2e2e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.reserve button:hover {
-    background-color: #000000;
-    color: #ffffff;
-    border: 1px solid #000000;
-
-}
-*/
-
 /* Carousel Section */
 .carousel {
     position: relative;
     height: 790px;
-    background-image: url('images/land.jpg'); /* Replace with your image */
+    background-image: url('images/land.jpg');
     background-size: cover;
     background-position: center;
+    background-color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: rgb(255, 253, 253);
+}
+
+.carousel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 500px;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), transparent);
+    pointer-events: none;
+    z-index: 1; /* overlay is below the text */
 }
 
 .carousel-content {
     text-align: center;
-    margin-bottom: 150px; /* This will move both texts up */
+    margin-bottom: 150px;
+    position: relative;
+    z-index: 2; /* stays above the gradient */
 }
 
 .carousel-content h1 {
     font-family: 'Quicksand', sans-serif;
     font-size: 24px;
-    margin-bottom: 8px; /* Adds space between "welcome to" and "THE NEPTUNE" */
-    letter-spacing: 3px; /* Optional: adds slight spacing between letters */
+    margin-bottom: 8px;
+    letter-spacing: 3px;
 }
 
 .carousel-content h2 {
@@ -261,7 +252,8 @@ nav a {
     font-size: 90px;
     font-weight: bold;
     letter-spacing: 8px;
-    margin-top: 0; /* Removes default margin */
+    margin-top: 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.089);
 }
 
 
@@ -348,11 +340,11 @@ button.prev:hover, button.next:hover {
 }
   /* Paragraph placeholder */
   .text-container p {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 25px;
-    color: rgb(77, 77, 77);
+    color: rgb(49, 49, 49);
 
     line-height: 1.6;
     margin-bottom: 20px;
@@ -386,43 +378,53 @@ button.prev:hover, button.next:hover {
     display: flex;
     justify-content: space-between;
     margin-top: 100px;
-    padding:100px;
+    padding: 100px;
 }
+
 .text-content {
     position: relative;
     background: #111;
     color: rgb(255, 255, 255);
-    padding: 60px;
+    padding: 80px 60px; /* Adjusted padding for better spacing */
     width: 450px;
-    height: 600px;
+    height: 563px;
+    display: flex; /* Added flex container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
 }
 
 .text-content h3 {
     font-family: "Bebas Neue";
-    font-size: 29px;
+    font-size: 31px;
     letter-spacing: 2px;
     font-weight: 400;
     color: #fcfcfc;
+    margin-top: 0px;
+    margin-bottom: 20px; /* Add spacing after heading */
 }
 
-.text-content p{
-    font-family: "DM Sans", sans-serif;
+.text-content p {
+    font-family: "Quicksand", sans-serif;
     font-weight: 400;
     font-size: 16px;
-    color: rgb(206, 206, 206);
+    color: rgb(228, 228, 228);
+    line-height: 1.6; /* Improve readability */
+    margin-bottom: 30px; /* Add spacing after paragraph */
 }
 
 .feature {
     display: flex;
     align-items: center;
     margin-bottom: 25px;
+    padding-left: 0; /* Changed from 15px to 0 */
 }
+
 .feature .icon {
     width: 40px;
     height: 40px;
-    margin-left: -15px;
-    margin-right: 45px;
+    margin-right: 50px; /* Reduced margin for better alignment */
 }
+
 .image-content {
     position: relative;
     width: 50%;
@@ -440,8 +442,6 @@ button.prev:hover, button.next:hover {
     transform: translate(20%, -20%);
 
 }
-
-
 
 
 /* Menu section styles */
@@ -469,20 +469,6 @@ button.prev:hover, button.next:hover {
     margin-bottom: 0;
 }
 
-/*
-.japanese-text {
-    position: absolute;
-    left: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.japanese-text img {
-    width: 40px;
-    height: auto;
-}
-*/
-
 .menu-title {
     font-family: 'Bebas Neue';
     font-size: 63px;
@@ -492,11 +478,11 @@ button.prev:hover, button.next:hover {
 }
 
 .menu-description {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Quicksand";
     font-weight: 400;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 25px;
-    color: rgb(199, 199, 199);
+    color: rgb(221, 221, 221);
     margin: 20px 0 40px;
 }
 
@@ -536,7 +522,7 @@ button.prev:hover, button.next:hover {
 
 .menu-tabs {
     font-family: 'Bebas Neue';
-    margin-top: 0; /* Add this to remove default top margin */
+    margin-top: 0; /* remove default top margin */
     margin-bottom: 2px;
     letter-spacing: 5656px;
     
@@ -574,8 +560,8 @@ button.prev:hover, button.next:hover {
 
 .menu-item-header {
     font-family: 'Bebas Neue';
-    font-size: 63px;
-    margin-top: 0; /* Add this to remove default top margin */
+    font-size: 20px;
+    margin-top: 0; /* remove default top margin */
     
     letter-spacing: 1.5px;
 
@@ -595,7 +581,8 @@ button.prev:hover, button.next:hover {
 }
 
 .menu-item-description {
-    color: #999;
+    font-family: "Quicksand", sans-serif;
+    color: #dbdbdb;
     font-size: 14px;
     line-height: 1.4;
 }
@@ -615,27 +602,7 @@ button.prev:hover, button.next:hover {
     opacity: 1;
 }
 
-/*
-.scroll-indicator {
-    position: absolute;
-    right: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.scroll-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #d74d29;
-    border-radius: 50%;
-}
-*/
+/* Experience section styles */
 
 .xp {
     align-content: center;
@@ -717,22 +684,23 @@ button.prev:hover, button.next:hover {
     margin-top: 17px;
     margin-bottom: 42px;
     color: #FFF;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Quicksand";
     font-weight: 400;
     font-size: 16px;
     line-height: 25px;
-    color: rgb(197, 197, 197);
+    color: rgb(209, 209, 209);
 
     line-height: 1.6;
     margin-bottom: 20px;
-    width: 85%; /* This will make the paragraph slightly narrower than its container */
+    width: 85%; /* make the paragraph slightly narrower than its container */
 }
 .map-text ul {
+
     list-style-type: none;
     padding: 0;
     margin: 20px 0;
+    font-family: 'Quicksand';
     font-size: 18px;
-    font-size: 17px;
     color: #FFF;
     text-transform: uppercase;
     letter-spacing: 0.8px;
@@ -740,6 +708,14 @@ button.prev:hover, button.next:hover {
 .map-text li {
     margin: 5px 0;
 }
+
+.map-text li a {
+    color: rgb(209, 209, 209);
+    font-size: 17px;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
 .map-text .contact {
     line-height: 60px;
 
@@ -748,7 +724,7 @@ button.prev:hover, button.next:hover {
     margin-top: 42px;
     margin-bottom: 40px;
     letter-spacing: 3px;
-    color: #ff5151;
+    color: #ff4e4e;
 }
 
 .map-text .button-link {
@@ -782,12 +758,6 @@ button.prev:hover, button.next:hover {
     margin-top: 35%;
     margin-right: 52px;
 }
-
-
-
-
-
-
 
 
 

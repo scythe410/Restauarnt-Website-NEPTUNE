@@ -141,8 +141,9 @@ nav a {
 }
 
 .dropdown-content a:hover {
-    background-color: #dddddd;
+    background-color: #f3f3f3;
     border-radius: 5px;
+    color: #eb3608;
 }
 
 /* This will display the dropdown content when hovering over the dropdown container */
@@ -205,62 +206,47 @@ nav ul li a {
 }
 
 
-/*
-.order button {
-    width: max-content;
-    height: 50px;
-    background-color:#ffffff;
-    color: #000000;
-    font-family: 'Quicksand', sans-serif;
-    letter-spacing: 1px;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 0 33px 0 35px;
-    border: 1px solid #2e2e2e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.order button:hover {
-    background-color: #000000;
-    color: #ffffff;
-    border: 1px solid #000000;
-
-}
-*/
-
 /* Carousel Section */
 .carousel {
     position: relative;
     height: 790px;
-    background-image: url('images/land2.jpg'); /* Replace with your image */
+    background-image: url('images/s33.jpg');
     background-size: cover;
     background-position: center;
+    background-color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 247, 247);
+}
+
+.carousel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 650px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.856), transparent);
+    pointer-events: none;
+    z-index: 1; /* overlay is below the text */
 }
 
 .carousel-content {
     text-align: center;
-    margin-bottom: -10px; /* This will move both texts up */
+    margin-bottom: 180px;
+    position: relative; /* For z-index to work */
+    z-index: 2; /* Ensures text is above the overlay */
 }
 
-.carousel-content h1 {
-    font-family: Domine;
-    font-size: 24px;
-    margin-bottom: 8px; /* Adds space between "welcome to" and "THE NEPTUNE" */
-    letter-spacing: 2px; /* Optional: adds slight spacing between letters */
-}
 
 .carousel-content h2 {
     font-family: Italiana;
     font-size: 90px;
     font-weight: bold;
     letter-spacing: 8px;
-    margin-top: 0; /* Removes default margin */
+    margin-top: 0;
+    text-shadow: 20px 50px 10px rgba(0, 0, 0, 0.123);
 }
 
 
