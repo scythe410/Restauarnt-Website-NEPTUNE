@@ -871,7 +871,7 @@ a {
     border: none;
     outline: none;
     background-color: #ff373d;
-    color: white;
+    color: rgb(255, 254, 254);
     cursor: pointer;
     width: 50px;
     height: 50px;
@@ -882,6 +882,12 @@ a {
     align-items: center;
     justify-content: center;
     display: none; /* Move this to the end */
+}
+
+#back-to-top:hover {
+    background-color: #ff481a;
+    color: rgb(255, 255, 255);
+    transform: scale(1.1);
 }
 
 /* Cart Sidebar */
