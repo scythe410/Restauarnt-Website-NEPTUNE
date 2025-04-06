@@ -87,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
         cartItems: document.querySelector('.cart-items'),
         subtotalAmount: document.querySelector('.subtotal-amount'),
         closeCartBtn: document.querySelector('.close-cart'),
-        overlay: document.querySelector('.overlay')
+        overlay: document.querySelector('.overlay'),
+        checkoutButton: document.querySelector('.cart-buttons') // Add this line
     };
     
     // Cart state
@@ -115,29 +116,50 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!elements.cartItems) return;
         
         let subtotal = 0;
-        elements.cartItems.innerHTML = cartItems_data.map((item, index) => {
-            const itemTotal = item.price * item.quantity;
-            subtotal += itemTotal;
-            
-            return `
-                <div class="cart-item" data-title="${item.name}">
-                    <div class="cart-item-left">
-                        ${item.image ? `<img src="${item.image}" alt="${item.name}">` : ''}
-                        <div class="cart-item-info">
-                            <h4>${item.name}</h4>
-                            <p class="cart-price">LKR ${itemTotal.toFixed(2)}</p>
+
+        // Show/hide checkout button and subtotal section based on cart items
+        if (elements.checkoutButton) {
+            elements.checkoutButton.style.display = cartItems_data.length > 0 ? 'flex' : 'none';
+        }
+        
+        // Show/hide subtotal section
+        const subtotalSection = document.querySelector('.cart-footer');
+        if (subtotalSection) {
+            subtotalSection.style.display = cartItems_data.length > 0 ? 'block' : 'none';
+        }
+        
+        // Show empty cart message if no items
+        if (cartItems_data.length === 0) {
+            elements.cartItems.innerHTML = `
+                <div style="text-align: center; padding: 20px; color: #666; font-family: 'Quicksand';">
+                    Your cart is empty
+                </div>`;
+        } else {
+            elements.cartItems.innerHTML = cartItems_data.map((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                return `
+                    <div class="cart-item" data-title="${item.name}">
+                        <div class="cart-item-left">
+                            ${item.image ? `<img src="${item.image}" alt="${item.name}">` : ''}
+                            <div class="cart-item-info">
+                                <h4>${item.name}</h4>
+                                <p class="cart-price">LKR ${itemTotal.toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="cart-decrease" data-index="${index}">-</button>
+                            <span class="cart-quantity">${item.quantity}</span>
+                            <button class="cart-increase" data-index="${index}">+</button>
                         </div>
                     </div>
-                    <div class="cart-item-controls">
-                        <button class="cart-decrease" data-index="${index}">-</button>
-                        <span class="cart-quantity">${item.quantity}</span>
-                        <button class="cart-increase" data-index="${index}">+</button>
-                    </div>
-                </div>
-            `;
-        }).join('');
+                `;
+            }).join('');
+        }
         
-        if (elements.subtotalAmount) {
+        // Update subtotal amount if items exist
+        if (elements.subtotalAmount && cartItems_data.length > 0) {
             elements.subtotalAmount.textContent = `LKR ${subtotal.toFixed(2)}`;
         }
         

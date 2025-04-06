@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
         categoryDescription: document.querySelector('.menu-types p'),
         cartSidebar: document.querySelector('.cart-sidebar'),
         overlay: document.querySelector('.overlay'),
-        menuSection: document.querySelector('.menu-types')
+        menuSection: document.querySelector('.menu-types'),
+        checkoutButton: document.querySelector('.cart-buttons') // Add this line
     };
 
     // Load cart items from localStorage
@@ -63,6 +64,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Calculate total quantity for cart counter
         const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        
+        // Show/hide checkout button based on cart items
+        if (elements.checkoutButton) {
+            elements.checkoutButton.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+        
+        // If cart is empty, show message
+        if (totalItems === 0) {
+            elements.cartItemsContainer.innerHTML = `
+                <div style="text-align: center; padding: 20px; color: #666; font-family: 'Quicksand';">
+                    Your cart is empty
+                </div>`;
+        }
         
         // Update cart count indicator
         if (elements.cartCount) {
