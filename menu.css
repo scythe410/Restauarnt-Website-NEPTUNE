@@ -377,7 +377,7 @@ button.prev:hover, button.next:hover {
     color: rgb(0, 0, 0);
     padding: 80px 50px;
     display: grid;
-    grid-template-columns: fr;
+    grid-template-columns: 1fr;
     gap: 40px;
 }
 
