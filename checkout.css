@@ -232,6 +232,11 @@ body {
   border-radius: 4px;
   margin: -10px 0 15px 0;
   background-color: #f9f9f9;
+transition: all 1s ease-in-out;
+}
+
+.card-details.hidden {
+  display: none;
 }
 
 .place-order-btn {
@@ -528,4 +533,64 @@ a {
 #order-note:focus {
     outline: 1px solid #111111;
     border-color: #000000;
+}
+
+/* Add these styles at the end of your CSS file */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px 50px;
+    border-radius: 8px;
+    text-align: center;
+    z-index: 10000;
+    min-width: 300px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.popup h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px !important;
+    margin-bottom: 15px !important;
+    letter-spacing: 2px;
+    color: #000000;
+}
+
+.popup p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.popup-close {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Bebas Neue';
+    font-size: 18px;
+    letter-spacing: 2px;
+    transition: background-color 0.3s;
+}
+
+.popup-close:hover {
+    background-color: #ff5930;
 }

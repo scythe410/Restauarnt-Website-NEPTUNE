@@ -68,6 +68,68 @@ document.addEventListener('DOMContentLoaded', function() {
         validateInput(this); // Revalidate after formatting
     });
     
+// Add payment method toggle handling
+    const cardPayment = document.getElementById('card');
+    const cashPayment = document.getElementById('cash');
+    const cardDetails = document.querySelector('.card-details');
+    const cardInputs = cardDetails.querySelectorAll('input');
+
+    function toggleCardDetails() {
+        if (cardPayment.checked) {
+            cardDetails.style.display = 'block';
+            cardInputs.forEach(input => {
+                input.required = true;
+            });
+        } else {
+            cardDetails.style.display = 'none';
+            cardInputs.forEach(input => {
+                input.required = false;
+                // Clear any validation errors when switching to cash
+                input.classList.remove('invalid');
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            });
+        }
+    }
+
+    // Initial state
+    toggleCardDetails();
+
+    // Add event listeners for payment method changes
+    cardPayment.addEventListener('change', toggleCardDetails);
+    cashPayment.addEventListener('change', toggleCardDetails);
+    
+    // Replace your existing form submit handler with this:
+    document.querySelector('.place-order-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        let valid = true;
+        const form = document.querySelector('.checkout-form');
+        const inputs = form.querySelectorAll('input[required]');
+        
+        inputs.forEach(input => {
+            if (!validateInput(input)) {
+                valid = false;
+            }
+        });
+        
+        if (valid) {
+            // Show success popup
+            const popup = document.querySelector('.popup-overlay');
+            popup.style.display = 'block';
+            
+            // Clear cart from localStorage
+            localStorage.removeItem('restaurantCartItems');
+            
+            // Add event listener for the OK button
+            document.querySelector('.popup-close').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+        }
+    });
+    
 });
 
 function validateInput(input) {
