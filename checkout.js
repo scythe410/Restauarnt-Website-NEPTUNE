@@ -77,7 +77,7 @@ function setupSpecialInputs() {
  * Handles toggling between card and cash payment methods
  */
 function setupPaymentToggle() {
-    const cardPayment = document.getElementById('card');
+    const cardPayment = document.getElementById('card-payment');
     const cashPayment = document.getElementById('cash');
     const cardDetails = document.querySelector('.card-details');
     

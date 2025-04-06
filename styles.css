@@ -331,7 +331,7 @@ button.prev:hover, button.next:hover {
     margin-bottom: 0;
 }
 
-.text-container h1 {
+.text-container h2 {
     font-family: 'Bebas Neue';
     font-size: 63px;
     margin-top: 0; /* Add this to remove default top margin */
@@ -658,7 +658,7 @@ button.prev:hover, button.next:hover {
     font-family: Arial, sans-serif;
     text-align: left;
 }
-.map-text h6{
+.map-text h3 {
     font-family: 'Quicksand', sans-serif;
     letter-spacing: 1px;
     font-weight: 400;
@@ -669,7 +669,7 @@ button.prev:hover, button.next:hover {
     position: relative;
 }
 
-.map-text h1 {
+.map-text h2 {
     font-family: 'Bebas Neue';
     font-size: 63px;
     margin-top: 0; /* Add this to remove default top margin */
