@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // Menu tabs functionality
+    // ===== MENU TABS FUNCTIONALITY =====
     const menuTabs = document.querySelectorAll('.menu-tab');
     const menuItemsContainer = document.querySelector('.menu-items');
+    
+    // Menu data organized by categories
     const menuCategories = {
         'SUSHI': [
-            {title: 'EL BANO COMONO', price: 'LKR 4100', description: 'This sushi is made from premium ingredients and so on text'},
-            {title: 'KIMGU ROLL', price: 'LKR 3100', description: 'This sushi is made from premium ingredients and so on text'},
-            {title: 'OAR FISH SALAMI', price: 'LKR 5400', description: 'This sushi is made from premium ingredients and so on text'},
-            {title: 'BENTO OLED', price: 'LKR 3200', description: 'This sushi is made from premium ingredients and so on text'}
+            {title: 'EL BANO COMONO', price: 'LKR 4100', description: 'A unique fusion sushi roll featuring tempura shrimp, avocado and spicy mayo'},
+            {title: 'KIMGU ROLL', price: 'LKR 3100', description: 'Korean-inspired roll with kimchi, grilled beef and cucumber'},
+            {title: 'OAR FISH SALAMI', price: 'LKR 5400', description: 'Rare oarfish sashimi served with Italian-style cured fish roe'},
+            {title: 'BENTO OLED', price: 'LKR 3200', description: 'Modern take on classic bento box with assorted premium sushi rolls'}
         ],
         'FRESH WATER': [
             {title: 'RAINBOW TROUT', price: 'LKR 4500', description: 'Freshly caught rainbow trout with herbs and lemon'},
@@ -27,13 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
     
-    // Function to render menu items with simpler transition
+    /**
+     * Renders menu items with a fade transition effect
+     * @param {string} category - The menu category to display
+     */
     function renderMenuItems(category) {
         if (!menuItemsContainer) return;
         
+        // Add fade-out class for smooth transition
         menuItemsContainer.classList.add('fade-out');
         
+        // Wait for fade-out animation to complete before updating content
         setTimeout(() => {
+            // Create HTML for all menu items in the selected category
             menuItemsContainer.innerHTML = menuCategories[category].map(item => `
                 <div class="menu-item">
                     <div class="menu-item-header">
@@ -44,9 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `).join('');
             
+            // Remove fade-out and add fade-in for appearance animation
             menuItemsContainer.classList.remove('fade-out');
             menuItemsContainer.classList.add('fade-in');
             
+            // Remove fade-in class after animation completes
             setTimeout(() => menuItemsContainer.classList.remove('fade-in'), 500);
         }, 200);
     }
@@ -54,8 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event listeners to menu tabs
     menuTabs.forEach(tab => {
         tab.addEventListener('click', function() {
+            // Remove active class from all tabs and add to clicked tab
             menuTabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
+            
+            // Render the menu items for selected category
             renderMenuItems(this.textContent);
         });
     });
@@ -63,23 +75,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize with the first tab (SUSHI)
     renderMenuItems('SUSHI');
 
-    /* Back to top button */
+    // ===== BACK TO TOP BUTTON =====
     const backToTopButton = document.getElementById('back-to-top');
     
-    // Show button when scrolled down
     if (backToTopButton) {
+        // Show button when scrolled down more than 300px
         window.addEventListener('scroll', function() {
             backToTopButton.style.display = 
                 (document.documentElement.scrollTop > 300) ? "block" : "none";
         });
         
-        // Smooth scroll to top
+        // Smooth scroll to top when button is clicked
         backToTopButton.addEventListener('click', function() {
             window.scrollTo({top: 0, behavior: 'smooth'});
         });
     }
 
-    // Cart functionality
+    // ===== CART FUNCTIONALITY =====
+    // Cache DOM elements for better performance
     const elements = {
         cartIcon: document.querySelector('.cart-icon'),
         cartCount: document.querySelector('.cart-count'),
@@ -88,13 +101,16 @@ document.addEventListener('DOMContentLoaded', function() {
         subtotalAmount: document.querySelector('.subtotal-amount'),
         closeCartBtn: document.querySelector('.close-cart'),
         overlay: document.querySelector('.overlay'),
-        checkoutButton: document.querySelector('.cart-buttons') // Add this line
+        checkoutButton: document.querySelector('.cart-buttons')
     };
     
-    // Cart state
+    // Initialize cart state from localStorage
     let cartItems_data = JSON.parse(localStorage.getItem('restaurantCartItems') || '[]');
     
-    // Cart UI functions
+    /**
+     * Toggle cart sidebar visibility
+     * @param {boolean} show - Whether to show or hide the cart
+     */
     function toggleCart(show) {
         if (elements.cartSidebar) {
             elements.cartSidebar.style.right = show ? '0' : '-100%';
@@ -104,8 +120,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    /**
+     * Update cart UI elements based on current cart data
+     */
     function updateCartUI() {
-        // Update cart count
+        // Update cart count badge
         if (elements.cartCount) {
             const totalItems = cartItems_data.reduce((sum, item) => sum + item.quantity, 0);
             elements.cartCount.textContent = totalItems;
@@ -117,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let subtotal = 0;
 
-        // Show/hide checkout button and subtotal section based on cart items
+        // Show/hide checkout button based on whether cart has items
         if (elements.checkoutButton) {
             elements.checkoutButton.style.display = cartItems_data.length > 0 ? 'flex' : 'none';
         }
@@ -128,13 +147,14 @@ document.addEventListener('DOMContentLoaded', function() {
             subtotalSection.style.display = cartItems_data.length > 0 ? 'block' : 'none';
         }
         
-        // Show empty cart message if no items
+        // Show empty cart message or list of cart items
         if (cartItems_data.length === 0) {
             elements.cartItems.innerHTML = `
                 <div style="text-align: center; padding: 20px; color: #666; font-family: 'Quicksand';">
                     Your cart is empty
                 </div>`;
         } else {
+            // Generate HTML for each cart item
             elements.cartItems.innerHTML = cartItems_data.map((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
@@ -163,13 +183,20 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.subtotalAmount.textContent = `LKR ${subtotal.toFixed(2)}`;
         }
         
+        // Initialize quantity control buttons
         initializeCartControls();
     }
     
+    /**
+     * Save cart data to localStorage
+     */
     function saveCart() {
         localStorage.setItem('restaurantCartItems', JSON.stringify(cartItems_data));
     }
     
+    /**
+     * Initialize event listeners for cart quantity controls
+     */
     function initializeCartControls() {
         // Handle quantity increase
         document.querySelectorAll('.cart-increase').forEach(button => {
@@ -180,18 +207,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 saveCart();
                 updateCartUI();
                 
+                // Dispatch event for any external components that need to know about cart updates
                 document.dispatchEvent(new CustomEvent('cartUpdated', { 
                     detail: { action: 'increase', item: cartItems_data[index] }
                 }));
             });
         });
         
-        // Handle quantity decrease
+        // Handle quantity decrease or item removal
         document.querySelectorAll('.cart-decrease').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.dataset.index);
                 const item = cartItems_data[index];
                 
+                // Check if we should remove the item or just decrease quantity
                 const removed = item.quantity <= 1;
                 if (removed) {
                     cartItems_data.splice(index, 1);
@@ -202,6 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 saveCart();
                 updateCartUI();
                 
+                // Dispatch event for any external components
                 document.dispatchEvent(new CustomEvent('cartUpdated', { 
                     detail: { action: 'decrease', item: item, removed: removed }
                 }));
@@ -209,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Cart event listeners
+    // Set up cart event listeners
     if (elements.cartIcon) {
         elements.cartIcon.addEventListener('click', () => toggleCart(true));
     }
@@ -222,22 +252,38 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.overlay.addEventListener('click', () => toggleCart(false));
     }
     
-    // Initialize cart
+    // Initialize cart UI
     updateCartUI();
     
-    // Expose cart API
+    // Create public API for cart interactions
     window.neptune = {
         cart: {
+            // Get all cart items
             getItems: () => cartItems_data,
+            
+            // Update the cart UI
             updateUI: updateCartUI,
+            
+            // Open the cart sidebar
             openCart: () => toggleCart(true),
+            
+            // Close the cart sidebar
             closeCart: () => toggleCart(false),
+            
+            /**
+             * Add an item to the cart
+             * @param {Object} item - Item to add (must have name, price, etc.)
+             * @param {boolean} openCartAfterAdd - Whether to open cart after adding
+             */
             addItem: (item, openCartAfterAdd = false) => {
+                // Check if item already exists in cart
                 const existingItemIndex = cartItems_data.findIndex(i => i.name === item.name);
                 
                 if (existingItemIndex !== -1) {
+                    // If item exists, increase quantity
                     cartItems_data[existingItemIndex].quantity++;
                 } else {
+                    // Otherwise add as new item
                     cartItems_data.push(item);
                 }
                 
@@ -246,6 +292,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (openCartAfterAdd) toggleCart(true);
             },
+            
+            /**
+             * Update quantity of a specific cart item
+             * @param {string} title - Item title to update
+             * @param {number} quantity - New quantity value
+             */
             updateItemQuantity: (title, quantity) => {
                 const item = cartItems_data.find(item => item.name === title);
                 if (item) {
@@ -254,6 +306,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateCartUI();
                 }
             },
+            
+            /**
+             * Remove an item from the cart
+             * @param {string} title - Title of item to remove
+             */
             removeItem: (title) => {
                 const index = cartItems_data.findIndex(item => item.name === title);
                 if (index !== -1) {
