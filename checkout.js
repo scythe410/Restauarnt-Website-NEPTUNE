@@ -11,105 +11,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Calculate totals
     updateOrderTotals(cartItems);
 
-    // Form validation
-    const form = document.querySelector('.checkout-form');
-    const inputs = document.querySelectorAll('.form-field input');
+    // Setup form validation
+    const requiredInputs = document.querySelectorAll('.form-field input[required]');
     
-    form.addEventListener('submit', function(event) {
-        let valid = true;
-        
-        inputs.forEach(input => {
-            if (!validateInput(input)) {
-                valid = false;
-            }
-        });
-        
-        if (!valid) {
-            event.preventDefault();
-        }
-    });
-
-    inputs.forEach(input => {
+    requiredInputs.forEach(input => {
         input.addEventListener('input', function() {
-            validateInput(input);
+            validateInput(this);
         });
     });
 
-    // Add input formatting for expiry date and card number
-    const expiryInput = document.getElementById('expiry');
-    const cardNumberInput = document.getElementById('card-number');
-
-    // Format expiry date input (MM/YY)
-    expiryInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length >= 2) {
-            value = value.slice(0,2) + '/' + value.slice(2);
-        }
-        e.target.value = value.slice(0,5);
-    });
-
-    // Format card number input (xxxx-xxxx-xxxx-xxxx)
-    cardNumberInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, ''); // Remove all non-digits
-        
-        // Limit to 16 digits
-        value = value.slice(0, 16);
-        
-        // Add dashes
-        let formattedValue = '';
-        for (let i = 0; i < value.length; i++) {
-            if (i > 0 && i % 4 === 0) {
-                formattedValue += '-';
-            }
-            formattedValue += value[i];
-        }
-        
-        e.target.value = formattedValue;
-        validateInput(this); // Revalidate after formatting
-    });
+    // Format special input fields
+    setupSpecialInputs();
     
-// Add payment method toggle handling
-    const cardPayment = document.getElementById('card');
-    const cashPayment = document.getElementById('cash');
-    const cardDetails = document.querySelector('.card-details');
-    const cardInputs = cardDetails.querySelectorAll('input');
-
-    function toggleCardDetails() {
-        if (cardPayment.checked) {
-            cardDetails.style.display = 'block';
-            cardInputs.forEach(input => {
-                input.required = true;
-            });
-        } else {
-            cardDetails.style.display = 'none';
-            cardInputs.forEach(input => {
-                input.required = false;
-                // Clear any validation errors when switching to cash
-                input.classList.remove('invalid');
-                const errorMessage = input.parentNode.querySelector('.error-message');
-                if (errorMessage) {
-                    errorMessage.remove();
-                }
-            });
-        }
-    }
-
-    // Initial state
-    toggleCardDetails();
-
-    // Add event listeners for payment method changes
-    cardPayment.addEventListener('change', toggleCardDetails);
-    cashPayment.addEventListener('change', toggleCardDetails);
+    // Setup payment method toggle
+    setupPaymentToggle();
     
-    // Replace your existing form submit handler with this:
+    // Handle order placement
     document.querySelector('.place-order-btn').addEventListener('click', function(e) {
         e.preventDefault();
         
         let valid = true;
-        const form = document.querySelector('.checkout-form');
-        const inputs = form.querySelectorAll('input[required]');
+        const requiredInputs = document.querySelectorAll('input[required]');
         
-        inputs.forEach(input => {
+        requiredInputs.forEach(input => {
             if (!validateInput(input)) {
                 valid = false;
             }
@@ -129,18 +53,86 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
 });
 
-function validateInput(input) {
-    
-    // Skipping validation for apartment field since it's optional
-    if (input.id === 'apartment') {
-        return true;
+function setupSpecialInputs() {
+    // Format expiry date input (MM/YY)
+    const expiryInput = document.getElementById('expiry');
+    if (expiryInput) {
+        expiryInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0,2) + '/' + value.slice(2);
+            }
+            e.target.value = value.slice(0,5);
+        });
     }
 
+    // Format card number input (xxxx-xxxx-xxxx-xxxx)
+    const cardNumberInput = document.getElementById('card-number');
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove all non-digits
+            value = value.slice(0, 16); // Limit to 16 digits
+            
+            // Add dashes
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += '-';
+                }
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue;
+            validateInput(this); // Revalidate after formatting
+        });
+    }
+}
+
+function setupPaymentToggle() {
+    const cardPayment = document.getElementById('card');
+    const cashPayment = document.getElementById('cash');
+    const cardDetails = document.querySelector('.card-details');
+    
+    if (!cardPayment || !cashPayment || !cardDetails) return;
+    
+    const cardInputs = cardDetails.querySelectorAll('input');
+
+    function toggleCardDetails() {
+        if (cardPayment.checked) {
+            cardDetails.style.display = 'block';
+            cardInputs.forEach(input => {
+                input.required = true;
+            });
+        } else {
+            cardDetails.style.display = 'none';
+            cardInputs.forEach(input => {
+                input.required = false;
+                // Clear any validation errors when switching to cash
+                input.classList.remove('invalid');
+                clearErrorMessage(input.parentNode);
+            });
+        }
+    }
+
+    // Initial state
+    toggleCardDetails();
+
+    // Add event listeners for payment method changes
+    cardPayment.addEventListener('change', toggleCardDetails);
+    cashPayment.addEventListener('change', toggleCardDetails);
+}
+
+function clearErrorMessage(parentElement) {
+    const errorMessage = parentElement.querySelector('.error-message');
+    if (errorMessage) {
+        errorMessage.remove();
+    }
+}
+
+function validateInput(input) {
     const value = input.value.trim();
-    const errorMessage = input.nextElementSibling;
     let isValid = true;
     let errorText = '';
 
@@ -196,27 +188,21 @@ function validateInput(input) {
         }
     }
 
+    const parentElement = input.parentNode;
+    
     // Update UI based on validation
     if (!isValid) {
         input.classList.add('invalid');
+        clearErrorMessage(parentElement);
         
-        // Remove existing error message if present
-        const existingError = input.parentNode.querySelector('.error-message');
-        if (existingError) {
-            existingError.remove();
-        }
-
         // Add new error message
         const errorSpan = document.createElement('span');
         errorSpan.classList.add('error-message');
         errorSpan.textContent = errorText;
-        input.parentNode.appendChild(errorSpan);
+        parentElement.appendChild(errorSpan);
     } else {
         input.classList.remove('invalid');
-        const existingError = input.parentNode.querySelector('.error-message');
-        if (existingError) {
-            existingError.remove();
-        }
+        clearErrorMessage(parentElement);
     }
 
     return isValid;
@@ -224,10 +210,10 @@ function validateInput(input) {
 
 function renderCheckoutCart(items) {
     const cartItemsContainer = document.querySelector('.cart-items');
-    if (!cartItemsContainer || !items || items.length === 0) {
-        if (cartItemsContainer) {
-            cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
-        }
+    if (!cartItemsContainer) return;
+    
+    if (!items || items.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
         return;
     }
     
@@ -268,4 +254,3 @@ function updateOrderTotals(items) {
     if (subtotalElement) subtotalElement.textContent = `LKR ${subtotal.toFixed(2)}`;
     if (totalElement) totalElement.textContent = `LKR ${total.toFixed(2)}`;
 }
-

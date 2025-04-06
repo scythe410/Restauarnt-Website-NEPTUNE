@@ -564,8 +564,8 @@ a {
 
 .popup h2 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px !important;
-    margin-bottom: 15px !important;
+    font-size: 32px;
+    margin-bottom: 15px;
     letter-spacing: 2px;
     color: #000000;
 }
