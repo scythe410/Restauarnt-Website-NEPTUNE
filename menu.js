@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let menuData = null;
+    // ===== STATE VARIABLES =====
+    let menuData = null; // Will store XML data once loaded
     let selectedItems = {}; // Format: { "CATEGORY_NAME-ITEM_TITLE": quantity }
-    let cartItems = []; // For cart sidebar display
+    let cartItems = []; // Array of items in cart
     
-    // DOM elements cached for better performance
+    // Cache DOM elements for better performance
     const elements = {
         menuGrid: document.querySelector('.menu-grid'),
         cartItemsContainer: document.querySelector('.cart-items'),
@@ -14,19 +15,21 @@ document.addEventListener('DOMContentLoaded', function() {
         cartSidebar: document.querySelector('.cart-sidebar'),
         overlay: document.querySelector('.overlay'),
         menuSection: document.querySelector('.menu-types'),
-        checkoutButton: document.querySelector('.cart-buttons') // Add this line
+        checkoutButton: document.querySelector('.cart-buttons')
     };
 
-    // Load cart items from localStorage
+    // Load cart from localStorage on page load
     initializeCart();
     
-    // Function to initialize cart from localStorage
+    /**
+     * Initialize cart from localStorage
+     */
     function initializeCart() {
         const savedCartItems = localStorage.getItem('restaurantCartItems');
         if (savedCartItems) {
             cartItems = JSON.parse(savedCartItems);
             
-            // Rebuild selectedItems from cartItems
+            // Rebuild selectedItems tracking object from cartItems
             cartItems.forEach(item => {
                 const itemKey = `${item.category}-${item.name}`;
                 selectedItems[itemKey] = item.quantity;
@@ -36,7 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Helper function for price formatting
+    /**
+     * Format price string consistently
+     * @param {string} price - Price with or without currency prefix
+     * @return {string} - Formatted price with currency
+     */
     function formatPrice(price) {
         const numericPrice = price.includes('LKR') ? 
             parseFloat(price.replace('LKR ', '')) : 
@@ -44,18 +51,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return `LKR ${numericPrice.toFixed(2)}`;
     }
     
-    // Function to scroll to menu section
+    /**
+     * Scroll to menu section with offset
+     */
     function scrollToMenuSection() {
         if (elements.menuSection) {
             setTimeout(() => {
-                const yOffset = -130;
+                const yOffset = -130; // Adjust for header height
                 const y = elements.menuSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 window.scrollTo({top: y, behavior: 'smooth'});
             }, 100);
         }
     }
     
-    // Cart Functions
+    /**
+     * Update cart display and localStorage
+     */
     function updateCart() {
         if (!elements.cartItemsContainer) return;
         
@@ -70,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.checkoutButton.style.display = totalItems > 0 ? 'flex' : 'none';
         }
         
-        // If cart is empty, show message
+        // Show empty cart message if applicable
         if (totalItems === 0) {
             elements.cartItemsContainer.innerHTML = `
                 <div style="text-align: center; padding: 20px; color: #666; font-family: 'Quicksand';">
@@ -78,13 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>`;
         }
         
-        // Update cart count indicator
+        // Update cart count badge
         if (elements.cartCount) {
             elements.cartCount.textContent = totalItems;
             elements.cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
         }
         
-        // Populate cart items
+        // Generate HTML for each cart item
         cartItems.forEach((item, index) => {
             const itemTotal = item.price * item.quantity;
             subtotal += itemTotal;
@@ -108,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.cartItemsContainer.innerHTML += cartItemHTML;
         });
         
-        // Update subtotal
+        // Update subtotal amount
         if (elements.subtotalElement) {
             elements.subtotalElement.textContent = `LKR ${subtotal.toFixed(2)}`;
         }
@@ -116,15 +127,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Save to localStorage
         localStorage.setItem('restaurantCartItems', JSON.stringify(cartItems));
         
-        // Initialize cart item controls
+        // Set up event handlers for cart controls
         initializeCartControls();
     }
     
+    /**
+     * Add item to cart
+     * @param {string} title - Item title
+     * @param {string} price - Item price (with or without currency)
+     * @param {string} image - Item image URL
+     * @param {string} category - Item category
+     * @param {boolean} openCartAfterAdd - Whether to open cart after adding
+     */
     function addToCart(title, price, image, category, openCartAfterAdd = false) {
+        // Convert price string to number
         const priceValue = price.includes('LKR') ? 
             parseFloat(price.replace('LKR ', '')) : 
             parseFloat(price);
         
+        // Check if item already exists in cart
         const existingItem = cartItems.find(item => item.name === title);
         
         if (existingItem) {
@@ -146,6 +167,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    /**
+     * Update quantity of a specific cart item
+     * @param {string} title - Item title to update
+     * @param {number} quantity - New quantity
+     */
     function updateCartItemQuantity(title, quantity) {
         const item = cartItems.find(item => item.name === title);
         if (item) {
@@ -153,6 +179,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    /**
+     * Remove an item from cart
+     * @param {string} title - Item title to remove
+     */
     function removeFromCart(title) {
         const index = cartItems.findIndex(item => item.name === title);
         if (index !== -1) {
@@ -160,25 +190,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Cart control functions
+    /**
+     * Open cart sidebar
+     */
     function openCart() {
         if (elements.cartSidebar) elements.cartSidebar.style.right = '0';
         if (elements.overlay) elements.overlay.style.display = 'block';
     }
     
+    /**
+     * Close cart sidebar
+     */
     function closeCart() {
         if (elements.cartSidebar) elements.cartSidebar.style.right = '-100%';
         if (elements.overlay) elements.overlay.style.display = 'none';
     }
     
-    // Function to load XML file
+    /**
+     * Load menu data from XML file
+     */
     function loadMenuData() {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 menuData = this.responseXML;
                 
-                // Check for category parameter in URL
+                // Check for category parameter in URL (for direct linking)
                 const urlParams = new URLSearchParams(window.location.search);
                 const categoryParam = urlParams.get('category');
                 
@@ -208,13 +245,16 @@ document.addEventListener('DOMContentLoaded', function() {
         xhr.send();
     }
     
-    // Render menu items function
+    /**
+     * Render menu items for a specific category
+     * @param {string} categoryName - Category to display
+     */
     function renderMenuItems(categoryName) {
-        if (!menuData) return;
+        if (!menuData || !elements.menuGrid) return;
         
-        if (!elements.menuGrid) return;
         elements.menuGrid.innerHTML = '';
         
+        // Find the selected category in XML data
         const categories = menuData.getElementsByTagName('category');
         let category = null;
         
@@ -227,14 +267,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!category) return;
         
+        // Update category heading and description
         if (elements.categoryHeading) elements.categoryHeading.textContent = categoryName;
         const description = category.getElementsByTagName('description')[0].textContent;
         if (elements.categoryDescription) {
             elements.categoryDescription.innerHTML = description + '<br>These dishes are prepared with the freshest ingredients and are sure to tantalize your taste buds.';
         }
         
+        // Get menu items for this category
         const items = category.getElementsByTagName('item');
         
+        // Generate HTML for each menu item
         for (let i = 0; i < items.length; i++) {
             const title = items[i].getElementsByTagName('title')[0].textContent;
             const desc = items[i].getElementsByTagName('description')[0].textContent;
@@ -242,10 +285,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const image = items[i].getElementsByTagName('image')[0].textContent;
             
             const priceText = formatPrice(price);
-            const formattedDesc = desc.replace(/\. /g, '.<br>');
+            const formattedDesc = desc.replace(/\. /g, '.<br>'); // Line break after each sentence
             const itemKey = `${categoryName}-${title}`;
             const quantity = selectedItems[itemKey] || 0;
             
+            // Create menu item HTML
             const menuItemHTML = `
                 <div class="menu-item" data-item-key="${itemKey}" data-category="${categoryName}" data-title="${title}" data-price="${priceText}" data-image="${image}">
                     <div class="menu-item-image">
@@ -273,24 +317,30 @@ document.addEventListener('DOMContentLoaded', function() {
             elements.menuGrid.innerHTML += menuItemHTML;
         }
         
+        // Set up event handlers for cart buttons
         initializeCartButtons();
     }
     
-    // Initialize cart buttons
+    /**
+     * Initialize add-to-cart buttons for menu items
+     */
     function initializeCartButtons() {
         document.querySelectorAll('.menu-item').forEach(item => {
+            // Get item data from data attributes
             const itemKey = item.dataset.itemKey;
             const category = item.dataset.category;
             const title = item.dataset.title;
             const price = item.dataset.price;
             const image = item.dataset.image;
             
+            // Get UI elements
             const addButton = item.querySelector('.add-button');
             const quantityControls = item.querySelector('.quantity-controls');
             const quantityElement = item.querySelector('.quantity');
             const removeButton = item.querySelector('.remove-button');
             const plusButton = item.querySelector('.plus-button');
             
+            // Initial add button click
             addButton.addEventListener('click', function() {
                 this.style.display = 'none';
                 quantityControls.style.display = 'flex';
@@ -298,15 +348,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 addToCart(title, price, image, category, false);
             });
             
+            // Remove/decrease button
             removeButton.addEventListener('click', function() {
                 let quantity = parseInt(quantityElement.textContent);
                 
                 if (quantity > 1) {
+                    // Decrease quantity
                     quantity--;
                     quantityElement.textContent = quantity;
                     selectedItems[itemKey] = quantity;
                     updateCartItemQuantity(title, quantity);
                 } else {
+                    // Remove item completely
                     addButton.style.display = 'block';
                     quantityControls.style.display = 'none';
                     quantityElement.textContent = '1';
@@ -317,6 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateCart();
             });
             
+            // Increase quantity button
             plusButton.addEventListener('click', function() {
                 let quantity = parseInt(quantityElement.textContent);
                 quantity++;
@@ -328,19 +382,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    /**
+     * Initialize quantity control buttons in cart sidebar
+     */
     function initializeCartControls() {
-        // Event handlers for increase/decrease buttons in cart
+        // Increase quantity button in cart
         document.querySelectorAll('.cart-increase').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.dataset.index);
                 const item = cartItems[index];
                 item.quantity++;
                 
-                // Update selectedItems as well
+                // Update tracking object
                 const itemKey = `${item.category}-${item.name}`;
                 selectedItems[itemKey] = item.quantity;
                 
-                // Update the display in the main menu if it's visible
+                // Update quantity in menu display if visible
                 const menuItem = document.querySelector(`.menu-item[data-item-key="${itemKey}"]`);
                 if (menuItem) {
                     menuItem.querySelector('.quantity').textContent = item.quantity;
@@ -350,6 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
+        // Decrease quantity or remove item button in cart
         document.querySelectorAll('.cart-decrease').forEach(button => {
             button.addEventListener('click', function() {
                 const index = parseInt(this.dataset.index);
@@ -357,6 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const itemKey = `${item.category}-${item.name}`;
                 
                 if (item.quantity > 1) {
+                    // Decrease quantity
                     item.quantity--;
                     selectedItems[itemKey] = item.quantity;
                     
@@ -366,6 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         menuItem.querySelector('.quantity').textContent = item.quantity;
                     }
                 } else {
+                    // Remove item completely
                     delete selectedItems[itemKey];
                     
                     // Update menu display if visible
@@ -384,7 +444,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Set up event listeners
+    /**
+     * Set up global event listeners
+     */
     function setupEventListeners() {
         // Cart sidebar controls
         const cartIcon = document.querySelector('.cart-icon');
@@ -394,25 +456,29 @@ document.addEventListener('DOMContentLoaded', function() {
         if (closeCartButton) closeCartButton.addEventListener('click', closeCart);
         if (elements.overlay) elements.overlay.addEventListener('click', closeCart);
         
-        // Menu tab event listeners
+        // Menu tab navigation
         const menuTabs = document.querySelectorAll('.menu-tab');
         menuTabs.forEach(tab => {
             tab.addEventListener('click', function() {
+                // Update active tab styling
                 menuTabs.forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
+                
+                // Render the selected category
                 renderMenuItems(this.textContent);
                 
-                // Update URL
+                // Update URL for direct linking
                 const newUrl = new URL(window.location.href);
                 newUrl.searchParams.set('category', this.textContent.trim());
                 window.history.pushState({}, '', newUrl);
                 
+                // Scroll to menu section
                 scrollToMenuSection();
             });
         });
     }
     
-    // Initialize everything
+    // Initialize the menu system
     setupEventListeners();
     loadMenuData();
 });
