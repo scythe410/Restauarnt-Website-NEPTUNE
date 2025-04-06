@@ -398,7 +398,7 @@ button.prev:hover, button.next:hover {
     font-size: 31px;
     letter-spacing: 2px;
     font-weight: 400;
-    color: #fcfcfc;
+    color: #f2f2f2;
     margin-top: 0px;
     margin-bottom: 20px; /* Add spacing after heading */
 }
