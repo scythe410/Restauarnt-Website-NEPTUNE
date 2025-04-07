@@ -881,7 +881,7 @@ a {
     transition: all 0.4s ease;
     align-items: center;
     justify-content: center;
-    display: none; /* Move this to the end */
+    display: none;
 }
 
 #back-to-top:hover {

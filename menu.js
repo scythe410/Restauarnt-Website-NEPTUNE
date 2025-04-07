@@ -21,9 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load cart from localStorage on page load
     initializeCart();
     
-    /**
-     * Initialize cart from localStorage
-     */
+
+    // Initialize cart from localStorage
     function initializeCart() {
         const savedCartItems = localStorage.getItem('restaurantCartItems');
         if (savedCartItems) {
@@ -64,9 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    /**
-     * Update cart display and localStorage
-     */
+    
+    // Update cart display and localStorage
+    
     function updateCart() {
         if (!elements.cartItemsContainer) return;
         
@@ -249,6 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * Render menu items for a specific category
      * @param {string} categoryName - Category to display
      */
+
     function renderMenuItems(categoryName) {
         if (!menuData || !elements.menuGrid) return;
         
@@ -273,6 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (elements.categoryDescription) {
             elements.categoryDescription.innerHTML = description + '<br>These dishes are prepared with the freshest ingredients and are sure to tantalize your taste buds.';
         }
+            
         
         // Get menu items for this category
         const items = category.getElementsByTagName('item');
@@ -283,12 +284,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const desc = items[i].getElementsByTagName('description')[0].textContent;
             const price = items[i].getElementsByTagName('price')[0].textContent;
             const image = items[i].getElementsByTagName('image')[0].textContent;
-            
             const priceText = formatPrice(price);
             const formattedDesc = desc.replace(/\. /g, '.<br>'); // Line break after each sentence
             const itemKey = `${categoryName}-${title}`;
             const quantity = selectedItems[itemKey] || 0;
-            
             // Create menu item HTML
             const menuItemHTML = `
                 <div class="menu-item" data-item-key="${itemKey}" data-category="${categoryName}" data-title="${title}" data-price="${priceText}" data-image="${image}">
@@ -316,7 +315,6 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             elements.menuGrid.innerHTML += menuItemHTML;
         }
-        
         // Set up event handlers for cart buttons
         initializeCartButtons();
     }
@@ -324,6 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Initialize add-to-cart buttons for menu items
      */
+
     function initializeCartButtons() {
         document.querySelectorAll('.menu-item').forEach(item => {
             // Get item data from data attributes

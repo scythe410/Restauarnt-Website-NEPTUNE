@@ -115,6 +115,7 @@ function setupPaymentToggle() {
  * Sets up the order placement button functionality
  * @param {Array} cartItems - The array of cart items
  */
+
 function setupOrderPlacement(cartItems) {
     const orderButton = document.querySelector('.place-order-btn');
     if (!orderButton) return;

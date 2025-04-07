@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Menu data organized by categories
     const menuCategories = {
         'SUSHI': [
-            {title: 'EL BANO COMONO', price: 'LKR 4100', description: 'A unique fusion sushi roll featuring tempura shrimp, avocado and spicy mayo'},
+            {title: 'EL BANO COMONO', price: 'LKR 4100', description: 'A unique fusion sushi roll featuring tempura shrimp and spicy mayo'},
             {title: 'KIMGU ROLL', price: 'LKR 3100', description: 'Korean-inspired roll with kimchi, grilled beef and cucumber'},
             {title: 'OAR FISH SALAMI', price: 'LKR 5400', description: 'Rare oarfish sashimi served with Italian-style cured fish roe'},
             {title: 'BENTO OLED', price: 'LKR 3200', description: 'Modern take on classic bento box with assorted premium sushi rolls'}
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 200);
     }
     
-    // Add click event listeners to menu tabs
+    // Click event listeners to menu tabs
     menuTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             // Remove active class from all tabs and add to clicked tab
@@ -75,14 +75,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize with the first tab (SUSHI)
     renderMenuItems('SUSHI');
 
+
     // ===== BACK TO TOP BUTTON =====
     const backToTopButton = document.getElementById('back-to-top');
     
     if (backToTopButton) {
-        // Show button when scrolled down more than 300px
+        // Show button when scrolled down more than 1000px
         window.addEventListener('scroll', function() {
             backToTopButton.style.display = 
-                (document.documentElement.scrollTop > 300) ? "block" : "none";
+                (document.documentElement.scrollTop > 1000) ? "block" : "none";
         });
         
         // Smooth scroll to top when button is clicked
