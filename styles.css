@@ -384,7 +384,7 @@ button.prev:hover, button.next:hover {
 .text-content {
     position: relative;
     background: #111;
-    color: rgb(255, 255, 255);
+    color: rgb(246, 246, 246);
     padding: 80px 60px; /* Adjusted padding for better spacing */
     width: 450px;
     height: 563px;
@@ -398,7 +398,7 @@ button.prev:hover, button.next:hover {
     font-size: 31px;
     letter-spacing: 2px;
     font-weight: 400;
-    color: #f2f2f2;
+    color: #ffffff;
     margin-top: 0px;
     margin-bottom: 20px; /* Add spacing after heading */
 }
