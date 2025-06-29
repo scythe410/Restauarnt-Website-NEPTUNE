@@ -2,6 +2,8 @@
 
 [Go checkout the site here ☺️](https://scythe410.github.io/Restauarnt-Website-NEPTUNE/)
 
+![Website demo image](https://github.com/user-attachments/assets/8c1c957c-fc57-434c-873c-152a3bcdcd02)
+
 ## Overview
 **The Neptune** is a modern, visually rich web application for a seafood restaurant, offering an immersive digital menu, online ordering, and a seamless checkout experience. The site is designed to reflect the elegance and freshness of the restaurant's cuisine, with a focus on user experience and aesthetic appeal.
 
