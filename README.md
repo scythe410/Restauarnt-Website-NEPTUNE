@@ -1,6 +1,6 @@
 # The Neptune
 
-![Landing Page](images/land.jpg)
+[Go checkout the site here ☺️](https://scythe410.github.io/Restauarnt-Website-NEPTUNE/)
 
 ## Overview
 **The Neptune** is a modern, visually rich web application for a seafood restaurant, offering an immersive digital menu, online ordering, and a seamless checkout experience. The site is designed to reflect the elegance and freshness of the restaurant's cuisine, with a focus on user experience and aesthetic appeal.
@@ -57,7 +57,7 @@
 - **Styles:** Modify CSS files for custom branding or layout changes.
 
 ## Credits
-- Design and development by Ramiru.
+- Design and development by Ramiru De Silva.
 - Images and icons are for demonstration purposes.
 - Fonts from [Google Fonts](https://fonts.google.com/).
 - Icons from [Boxicons](https://boxicons.com/).
